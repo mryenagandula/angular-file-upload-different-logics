@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="mt-3 mb-3">File upload</h1>
+  <div class="row">
+    <input type="file" id="file-upload" #fileUpload class="form-control m-4" style="padding: 4px;" (change)="handleFileInput($event.target.files)"/>
+  </div>
+  <div class="mt-3 p-4" *ngIf="fileDetails">
+    <h4 class="mt-1">Uploaded File Details</h4>
+    <p class="mt-1">File Name : {{fileDetails.name}}</p>
+    <p class="mt-1">File Size : {{fileDetails.size}} KB</p>
+    <p class="mt-1">File Type : {{fileDetails.type}}</p>
+  </div>
+
+  <div *ngIf="uploading !== 'completed'">
+    <span style="color:green;">{{this.uploading}}</span>
+  </div>
+  <div class="progress m-2" *ngIf="progressBarPercentage > 0">
+    <div class="progress-bar" role="progressbar" [ngStyle]="{'width':progressBarPercentage + '%'}" aria-valuemin="0" aria-valuemax="100">{{progressBarPercentage}}%</div>
+  </div>
+  <div class="mt-3 p-4" *ngIf="fileDetails">
+    <button class="btn btn-primary m-3" (click)="uploadFile()">Upload File</button>
+    <button class="btn btn-danger m-3" (click)="reset()">Reset </button>
+  </div>
+</div>
